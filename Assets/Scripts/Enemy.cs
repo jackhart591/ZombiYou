@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : Entity {
+
+    private void Awake() {
+        MoveSpeed = 15f;
+    }
     
     public override void Attack(Transform e_entity) {
         if (e_entity.TryGetComponent(out Player player)) {
