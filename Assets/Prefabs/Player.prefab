@@ -1050,7 +1050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1027d0dedc96ba40a8ef648f50901a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2974258539404874435}
+  entity: {fileID: 2974258539404874435}
   health: 10
   maxHealth: 10
 --- !u!1 &6477599217133627762

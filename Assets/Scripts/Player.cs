@@ -36,6 +36,13 @@ public class Player : Entity {
 
     }
 
+    public void IncreaseCurrentHealth(float percentage)
+    {
+        float toAdd = (percentage / 100);
+
+        Health += toAdd;
+    }
+
     public void IncreaseMaxHealth(float percentage) {
         float toAdd = MaxHealth * (percentage / 100);
 
