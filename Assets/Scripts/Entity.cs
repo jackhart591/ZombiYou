@@ -11,10 +11,6 @@ public abstract class Entity : MonoBehaviour {
     protected float Damage;
     protected float AtkSpeed;
 
-    public void Awake() {
-        MoveSpeed = 2f;
-    }
-
     public abstract void Attack(Transform entity);
     public abstract void ReceiveDamage(float e_damage);
 }

@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 
 public class Player : Entity {
 
+    public void Awake() {
+        MoveSpeed = 2f;
+    }
+
     public override void Attack(Transform entity) {
 
     }
