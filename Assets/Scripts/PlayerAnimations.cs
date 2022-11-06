@@ -14,16 +14,13 @@ public class PlayerAnimations : MonoBehaviour
     Quaternion lookdir = new Quaternion();
     Vector3 moveInputVal;
 
+    
+
     void Start()
-    {
-        if (player == null)
-        {
-            player = transform.parent.gameObject;
-        }
+    {   
         anim = GetComponent<Animator>();
         anim.SetBool("isWalking", false);
         anim.SetFloat("walkSpeed", 1f);
-
     }
 
     private void OnMove(InputValue value)

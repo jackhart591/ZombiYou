@@ -39,7 +39,32 @@ ModelImporter:
   - first:
       74: 5456834856032020771
     second: Armature|zombieWalk
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: a00a73d215fbdf74ba9c5593b13b5516, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 65798d1a2b46e834e87f9a6446edbc14, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: da6d7e7131c59cc43b9cdeb7ff94074f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: b5a702fe88672ee4fb5cd03ef5e63486, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.005
+    second: {fileID: 2100000, guid: 30694a27d1031f041937a9fd153abeed, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
