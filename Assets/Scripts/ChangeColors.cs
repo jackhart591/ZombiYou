@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChangeColors : MonoBehaviour
 {
+    [Tooltip("This is the object that'll have the player health and player class")]
     public GameObject player;
     //vars for color stuff
     public float health = 10f;

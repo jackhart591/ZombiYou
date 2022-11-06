@@ -7,6 +7,7 @@ public class PlayerAnimations : MonoBehaviour
 {
     //the mesh being animated is not the player itself, just the visuals for the player
     //the actual player is an invisible cube
+    [Tooltip("This is going to be the position the animation stuff is gunna be following. It is NOT the -in front of- object")]
     public GameObject player;// has to have the player parent assigned
     public Animator anim;
     public float rotationSpeed = 800f;
@@ -107,28 +108,28 @@ public class PlayerAnimations : MonoBehaviour
                 case (0, 0):
                     break;
                 case (0, 1):
-                    lookdir = Quaternion.LookRotation(player.transform.forward, Vector3.up);
+                    lookdir = Quaternion.LookRotation(Vector3.forward, Vector3.up);
                     break;
                 case (1, 1):
-                    lookdir = Quaternion.LookRotation(((player.transform.forward + player.transform.right) / 2), Vector3.up);
+                    lookdir = Quaternion.LookRotation(((Vector3.forward + Vector3.right) / 2), Vector3.up);
                     break;
                 case (0, -1):
-                    lookdir = Quaternion.LookRotation(player.transform.forward * -1, Vector3.up);
+                    lookdir = Quaternion.LookRotation(Vector3.forward * -1, Vector3.up);
                     break;
                 case (1, 0):
-                    lookdir = Quaternion.LookRotation(player.transform.right, Vector3.up);
+                    lookdir = Quaternion.LookRotation(Vector3.right, Vector3.up);
                     break;
                 case (-1, 0):
-                    lookdir = Quaternion.LookRotation(player.transform.right * -1, Vector3.up);
+                    lookdir = Quaternion.LookRotation(Vector3.right * -1, Vector3.up);
                     break;
                 case (-1, 1):
-                    lookdir = Quaternion.LookRotation((player.transform.forward + (player.transform.right * -1) / 2), Vector3.up);
+                    lookdir = Quaternion.LookRotation((Vector3.forward + (Vector3.right * -1) / 2), Vector3.up);
                     break;
                 case (1, -1):
-                    lookdir = Quaternion.LookRotation((player.transform.right + (player.transform.forward * -1) / 2), Vector3.up);
+                    lookdir = Quaternion.LookRotation((Vector3.right + (Vector3.forward * -1) / 2), Vector3.up);
                     break;
                 case (-1, -1):
-                    lookdir = Quaternion.LookRotation(((player.transform.right * -1) + (player.transform.forward * -1) / 2), Vector3.up);
+                    lookdir = Quaternion.LookRotation(((Vector3.right * -1) + (Vector3.forward * -1) / 2), Vector3.up);
                     break;
                 default:
                     break;
