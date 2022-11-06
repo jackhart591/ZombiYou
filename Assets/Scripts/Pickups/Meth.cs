@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Textbook : Pickup
-{
+public class Meth : Pickup {
+
     protected override void pickupBehavior() {
-        player.IncreaseMaxHealth(10f);
+        player.IncreaseDefense(10f);
+        player.IncreaseSpeed(20f);
     }
 }

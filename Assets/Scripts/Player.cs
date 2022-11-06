@@ -7,9 +7,12 @@ public class Player : Entity {
     public float MaxThirst { get; private set; }
     public float Thirst { get; private set; }
 
+    private float SpeedAdditive;
+
     private void Awake() {
         MaxThirst = 30.0f;
         Thirst = 30.0f;
+        SpeedAdditive = 0f;
     }
 
     public override void Attack(Transform entity) {
@@ -39,20 +42,32 @@ public class Player : Entity {
         MaxHealth += toAdd;
     }
 
+    public void IncreaseDefense(float percentage) {
+        float toAdd = Defense * (percentage / 100);
+
+        Defense += toAdd;
+    }
+
+    public void IncreaseSpeed(float percentage) {
+        float toAdd = (MoveSpeed + SpeedAdditive) * (percentage / 100);
+
+        SpeedAdditive += toAdd;
+    }
+
     public void ResetThirst() { Thirst = MaxThirst; }
 
     private void Update() {
 
         if (Health <= 1) {
-            MoveSpeed = 4f;
+            MoveSpeed = 4f + SpeedAdditive;
             Damage = 10f;
             Thirst -= Time.deltaTime * 2;
         } else if (Health <= 4) {
-            MoveSpeed = 3f;
+            MoveSpeed = 3f + SpeedAdditive;
             Damage = 7f;
             Thirst -= Time.deltaTime * 1.5f;
         } else {
-            MoveSpeed = 2f;
+            MoveSpeed = 2f + SpeedAdditive;
             Damage = 5f;
             Thirst -= Time.deltaTime;
         }
