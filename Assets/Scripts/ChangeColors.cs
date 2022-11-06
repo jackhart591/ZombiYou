@@ -81,8 +81,9 @@ public class ChangeColors : MonoBehaviour
     void Start()
     {
         //set color stuff
-        maxHealth = 10f;
-        prevHealth = 10f;
+        health = player.GetComponent<Player>().Health;
+        maxHealth = player.GetComponent<Player>().MaxHealth;
+        prevHealth = health;
         playerRender = GetComponent<Renderer>();
         
         if (playerRender != null)
@@ -106,6 +107,8 @@ public class ChangeColors : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        health = player.GetComponent<Player>().Health;
+        maxHealth = player.GetComponent<Player>().MaxHealth;
         float healthPercent = (health / maxHealth);
         if (health != prevHealth)
         {
