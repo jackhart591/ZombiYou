@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChangeColors : MonoBehaviour
 {
     [Tooltip("This is the object that'll have the player health and player class")]
-    public GameObject player;
+    public GameObject entity;
     //vars for color stuff
     public float health = 10f;
     float prevHealth;
@@ -14,102 +14,76 @@ public class ChangeColors : MonoBehaviour
     bool crit = false;
     Renderer playerRender;
     Material[] materials;
-    Material hairMaterial;
-    Material bodyMaterial;
-    Material pantsMaterial;
-    Material coatMaterial;
-    Material shoesMaterial;
-    Color hairColor;
-    Color bodyColor;
-    Color pantsColor;
-    Color coatColor;
-    Color shoesColor;
-    Color originalHairColor;
-    Color originalBodyColor;
-    Color originalPantsColor;
-    Color originalCoatColor;
-    Color originalShoesColor;
+    List<Color> colors = new List<Color>();
+    List<Color> originalColors = new List<Color>();
+    int materialLength;
 
     void SetGradientColor(float amount, Color color)
     {
-        hairColor = originalHairColor;
-        coatColor = originalCoatColor;
-        bodyColor = originalBodyColor;
-        shoesColor = originalShoesColor;
-        pantsColor = originalPantsColor;
 
-        hairColor = Color.Lerp(hairColor, color, amount);
-        coatColor = Color.Lerp(coatColor, color, amount);
-        bodyColor = Color.Lerp(bodyColor, color, amount);
-        shoesColor = Color.Lerp(shoesColor, color, amount);
-        pantsColor = Color.Lerp(pantsColor, color, amount);
+        for(int i = 0 ; i < materialLength; i++)
+        {
+            colors[i] = originalColors[i];
+        }
 
-        coatMaterial.color = coatColor;
-        hairMaterial.color = hairColor;
-        bodyMaterial.color = bodyColor;
-        shoesMaterial.color = shoesColor;
-        pantsMaterial.color = pantsColor;
-        materials[0] = coatMaterial;
-        materials[1] = hairMaterial;
-        materials[2] = bodyMaterial;
-        materials[3] = shoesMaterial;
-        materials[4] = pantsMaterial;
+        for (int i = 0; i < materialLength; i++)
+        {
+            colors[i] = Color.Lerp(colors[i], color, amount);
+        }
+
+        for (int i = 0; i < materialLength; i++)
+        {
+            materials[i].color = colors[i];
+            playerRender.materials = materials;
+        }
     }
 
     void BackandFourthColor(Color a, Color b)
     {
-        hairColor = Color.Lerp(b, a, Mathf.Abs(Mathf.Sin(5*counter)));
-        coatColor = Color.Lerp(b, a, Mathf.Abs(Mathf.Sin(5*counter)));
-        bodyColor = Color.Lerp(b, a, Mathf.Abs(Mathf.Sin(5*counter)));
-        shoesColor = Color.Lerp(b, a, Mathf.Abs(Mathf.Sin(5*counter)));
-        pantsColor = Color.Lerp(b, a, Mathf.Abs(Mathf.Sin(5*counter)));
+        
+        for (int i = 0; i < materialLength; i++)
+        {
+            colors[i] = Color.Lerp(b, a, Mathf.Abs(Mathf.Sin(5 * counter)));
+        }
 
-        coatMaterial.color = coatColor;
-        hairMaterial.color = hairColor;
-        bodyMaterial.color = bodyColor;
-        shoesMaterial.color = shoesColor;
-        pantsMaterial.color = pantsColor;
-        materials[0] = coatMaterial;
-        materials[1] = hairMaterial;
-        materials[2] = bodyMaterial;
-        materials[3] = shoesMaterial;
-        materials[4] = pantsMaterial;
-
+        for (int i = 0; i < materialLength; i++)
+        {
+            materials[i].color = colors[i];
+            playerRender.materials = materials;
+        }
         
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         //set color stuff
-        health = player.GetComponent<Player>().Health;
-        maxHealth = player.GetComponent<Player>().MaxHealth;
+        health = entity.GetComponent<Entity>().Health;
+        maxHealth = entity.GetComponent<Entity>().MaxHealth;
         prevHealth = health;
+
         playerRender = GetComponent<Renderer>();
-        
-        if (playerRender != null)
+        materials = playerRender.materials;
+        materialLength = materials.Length;
+        for (int i = 0; i < materialLength; i++)
         {
-            materials = playerRender.materials;
-            coatMaterial = materials[0];
-            originalCoatColor = coatMaterial.color;
-            hairMaterial = materials[1];
-            originalHairColor = hairMaterial.color;
-            bodyMaterial = materials[2];
-            originalBodyColor = bodyMaterial.color;
-            shoesMaterial = materials[3];
-            originalShoesColor = shoesMaterial.color;
-            pantsMaterial = materials[4];
-            originalPantsColor = pantsMaterial.color;
+            originalColors.Add(Color.blue);
+        }
+        for (int i = 0; i < materialLength; i++)
+        {
+            colors.Add(Color.blue);
+        }
+        for (int i = 0; i < materialLength; i++)
+        {
+            originalColors[i] = materials[i].color;
+            colors[i] = originalColors[i];
         }
         
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-        health = player.GetComponent<Player>().Health;
-        maxHealth = player.GetComponent<Player>().MaxHealth;
+        health = entity.GetComponent<Entity>().Health;
+        maxHealth = entity.GetComponent<Entity>().MaxHealth;
         float healthPercent = (health / maxHealth);
         if (health != prevHealth)
         {

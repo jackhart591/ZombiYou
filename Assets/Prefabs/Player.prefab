@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 2974258539404874489}
   m_Layer: 0
   m_Name: PlayerDude
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -467,6 +467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1f263403da88b4db39d91866ff4b7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMoving: 0
   Health: 10
   MaxHealth: 10
   Defense: 10

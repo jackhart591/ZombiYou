@@ -7,6 +7,7 @@ public class Enemy : Entity {
     public bool awake;
 
     private void Awake() {
+        isMoving = false;
         MoveSpeed = 15f;
         awake = false;
     }
