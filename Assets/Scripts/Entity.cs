@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Entity : MonoBehaviour {
     //among us
+    public bool isMoving;
     public float Health;
     public float MaxHealth;
     public float MoveSpeed { get; protected set; }
