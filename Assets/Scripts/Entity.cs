@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Entity : MonoBehaviour {
-
+    //among us
     public float Health;
     public float Thirst;
     public float MoveSpeed { get; protected set; }

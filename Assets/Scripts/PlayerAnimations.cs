@@ -10,6 +10,7 @@ public class PlayerAnimations : MonoBehaviour
     public GameObject player;// has to have the player parent assigned
     public Animator anim;
     public float rotationSpeed = 800f;
+    public float wlkSpd = 1.5f;
     Quaternion lookdir = new Quaternion();
     Vector3 moveInputVal;
 
@@ -27,7 +28,6 @@ public class PlayerAnimations : MonoBehaviour
 
     private void OnMove(InputValue value)
     {
-
         moveInputVal = new Vector3(value.Get<Vector2>().x, 0, value.Get<Vector2>().y);
         if (moveInputVal.magnitude == 0)
         {
@@ -36,16 +36,18 @@ public class PlayerAnimations : MonoBehaviour
         else
         {
             anim.SetBool("isWalking", true);
-            anim.SetFloat("walkSpeed", (moveInputVal.magnitude + 1));
+            anim.SetFloat("walkSpeed", (moveInputVal.magnitude * wlkSpd + 1));
         }
 
     }
 
     void Update()
     {
+        transform.position = player.transform.position;
+
         bool anyKey = (moveInputVal.magnitude != 0);
         float xVel = moveInputVal.x;
-        float yVel = moveInputVal.y;
+        float yVel = moveInputVal.z;
         int lastX = 0;
         int lastY = 0;
         if (anyKey)
@@ -58,42 +60,42 @@ public class PlayerAnimations : MonoBehaviour
                 case (0, 0):
                     break;
                 case (0, 1):
-                    lookdir = Quaternion.LookRotation(player.transform.forward, Vector3.up);
+                    lookdir = Quaternion.LookRotation(Vector3.forward, Vector3.up);
                     lastX = 0;
                     lastY = 1;
                     break;
                 case (1, 1):
-                    lookdir = Quaternion.LookRotation(((player.transform.forward + player.transform.right) / 2), Vector3.up);
+                    lookdir = Quaternion.LookRotation(((Vector3.forward + Vector3.right) / 2), Vector3.up);
                     lastX = 1;
                     lastY = 1;
                     break;
                 case (0, -1):
-                    lookdir = Quaternion.LookRotation(player.transform.forward * -1, Vector3.up);
+                    lookdir = Quaternion.LookRotation(Vector3.forward * -1, Vector3.up);
                     lastX = 0;
                     lastY = -1;
                     break;
                 case (1, 0):
-                    lookdir = Quaternion.LookRotation(player.transform.right, Vector3.up);
+                    lookdir = Quaternion.LookRotation(Vector3.right, Vector3.up);
                     lastX = 1;
                     lastY = 0;
                     break;
                 case (-1, 0):
-                    lookdir = Quaternion.LookRotation(player.transform.right * -1, Vector3.up);
+                    lookdir = Quaternion.LookRotation(Vector3.right * -1, Vector3.up);
                     lastX = -1;
                     lastY = 0;
                     break;
                 case (-1, 1):
-                    lookdir = Quaternion.LookRotation((player.transform.forward + (player.transform.right * -1) / 2), Vector3.up);
+                    lookdir = Quaternion.LookRotation((Vector3.forward + (Vector3.right * -1) / 2), Vector3.up);
                     lastX = -1;
                     lastY = 1;
                     break;
                 case (1, -1):
-                    lookdir = Quaternion.LookRotation((player.transform.right + (player.transform.forward * -1) / 2), Vector3.up);
+                    lookdir = Quaternion.LookRotation((Vector3.right + (Vector3.forward * -1) / 2), Vector3.up);
                     lastX = 1;
                     lastY = -1;
                     break;
                 case (-1, -1):
-                    lookdir = Quaternion.LookRotation(((player.transform.right * -1) + (player.transform.forward * -1) / 2), Vector3.up);
+                    lookdir = Quaternion.LookRotation(((Vector3.right * -1) + (Vector3.forward * -1) / 2), Vector3.up);
                     lastX = -1;
                     lastY = -1;
                     break;
