@@ -7,5 +7,6 @@ public class Meth : Pickup {
     protected override void pickupBehavior() {
         player.IncreaseDefense(10f);
         player.IncreaseSpeed(20f);
+        player.Health -= 3f;
     }
 }
