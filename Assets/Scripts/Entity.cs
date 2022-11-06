@@ -6,7 +6,6 @@ public abstract class Entity : MonoBehaviour {
     //among us
     public float Health;
     public float MaxHealth;
-    public float Thirst;
     public float MoveSpeed { get; protected set; }
     [SerializeField] protected float Defense;
     [SerializeField] protected float Damage;

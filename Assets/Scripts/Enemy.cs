@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Enemy : Entity {
 
+    public bool awake;
+
     private void Awake() {
         MoveSpeed = 15f;
+        awake = false;
     }
     
     public override void Attack(Transform e_entity) {

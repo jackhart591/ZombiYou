@@ -17,6 +17,7 @@ public class EnemyNavMesh : MonoBehaviour {
     }
 
     private void Update() {
-        navMeshAgent.destination = playerPos.position;
+        if (GetComponent<Enemy>().awake)
+            navMeshAgent.destination = playerPos.position;
     }
 }
