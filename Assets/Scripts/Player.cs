@@ -5,12 +5,8 @@ using UnityEngine.InputSystem;
 
 public class Player : Entity {
 
-    public void Awake() {
-        MoveSpeed = 2f;
-    }
-
     public override void Attack(Transform entity) {
-
+        entity.GetComponent<Enemy>().ReceiveDamage(Damage);
     }
 
     public override void ReceiveDamage(float e_damage) {
@@ -34,5 +30,19 @@ public class Player : Entity {
         float toAdd = MaxHealth * (percentage / 100);
 
         MaxHealth += toAdd;
+    }
+
+    private void Update() {
+
+        if (Health <= 1) {
+            MoveSpeed = 4f;
+            Damage = 10f;
+        } else if (Health <= 4) {
+            MoveSpeed = 3f;
+            Damage = 7f;
+        } else {
+            MoveSpeed = 2f;
+            Damage = 5f;
+        }
     }
 }

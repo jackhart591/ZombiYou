@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public Vector3 direction;
     public float speed;
+    public Player playerInst;
 
     private float timeToDelete = 3.0f;
 
@@ -16,6 +17,12 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         } else {
             timeToDelete -= Time.deltaTime;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.transform.TryGetComponent(out Enemy enemy)) {
+            playerInst.Attack(enemy.transform);
         }
     }
 }

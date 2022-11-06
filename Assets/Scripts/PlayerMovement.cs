@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnFire(InputValue value) {
         GameObject bulletInst = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        bulletInst.GetComponent<Bullet>().playerInst = GetComponent<Player>();
 
         Ray cameraRay = Camera.main.ScreenPointToRay(new Vector3(Mouse.current.position.ReadValue().x, Mouse.current.position.ReadValue().y, 0));
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);

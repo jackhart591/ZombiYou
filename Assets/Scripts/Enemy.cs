@@ -15,11 +15,15 @@ public class Enemy : Entity {
     }
 
     public override void ReceiveDamage(float e_damage) {
-        
+        Health -= e_damage;
+
+        if (Health <= 0) {
+            Death();
+        }
     }
 
     protected override void Death() {
-
+        Destroy(gameObject);
     }
 
     public void OnCollisionEnter(Collision other) {
