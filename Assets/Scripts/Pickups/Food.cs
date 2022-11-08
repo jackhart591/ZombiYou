@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Food : Pickup
 {
+    public float healthBoost = 100f;
     protected override void pickupBehavior()
     {
-        player.IncreaseCurrentHealth(1f);
+        player.IncreaseCurrentHealth(healthBoost);
     }
 }
